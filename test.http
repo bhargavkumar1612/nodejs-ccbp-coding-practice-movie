@@ -1,11 +1,18 @@
 ###
 POST http://localhost:3000/movies/
-Content-Type: : application/json
+Content-Type: application/json
 
 {
   "directorId": 6,
   "movieName": "Jurassic Park",
   "leadActor": "Jeff Goldblum"
 }
+###
+PUT http://localhost:3000/movies/117
+Content-Type:  application/json
 
-content
+{
+  "directorId": 6,
+  "movieName": "Jurassic Park The Lost City",
+  "leadActor": "Jeff Goldblum"
+}
