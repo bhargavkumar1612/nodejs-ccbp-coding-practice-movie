@@ -122,8 +122,6 @@ app.get("/directors/:directorId/movies/", async (request, response) => {
   const directorId = request.params.directorId;
   const directorMovieQuery = `
          select
-         movie.director_id,
-         director_name,
          movie_name
         from 
         movie left join director on movie.director_id=director.director_id
@@ -132,12 +130,23 @@ app.get("/directors/:directorId/movies/", async (request, response) => {
   const directorMovies = await db.all(directorMovieQuery);
   const directorMoviesResponse = directorMovies.map((item) => {
     return {
-      directorId: item.director_id,
-      directorName: item.director_name,
       movieName: item.movie_name,
     };
   });
   response.send(directorMoviesResponse);
+});
+
+// delete the given player Id
+
+app.delete("/movies/:movieId", async (request, response) => {
+  const { movieId } = request.params;
+  const deleteQuery = `
+         DELETE FROM movie
+         WHERE
+            movie_id = ${movieId};
+        `;
+  await db.run(deleteQuery);
+  response.send(`Movie Removed`);
 });
 
 module.exports = app;

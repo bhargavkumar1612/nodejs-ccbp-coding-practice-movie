@@ -16,3 +16,6 @@ Content-Type:  application/json
   "movieName": "Jurassic Park The Lost City",
   "leadActor": "Jeff Goldblum"
 }
+
+###
+DELETE http://localhost:3000/movies/119
